@@ -7,8 +7,8 @@ class Student extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Student_model');
-        $this->load->model('Attendance_model');
+        $this->load->model('Student_Model');
+        $this->load->model('Attendance_Model');
         //Validate User Here
         // check_student_login();
 
@@ -21,9 +21,9 @@ class Student extends CI_Controller
     public function dashboard()
     {
         $student_id = $this->session->userdata('student_id');
-        $data['student'] = $this->Student_model->get_student_details($student_id); // Fetch details like name, photo, roll no, etc.
-        $data['streak'] = $this->Attendance_model->get_streak_data($student_id);  // Current and longest streak
-        $data['attendance_graph'] = $this->Attendance_model->get_weekly_attendance($student_id); // Attendance data
+        $data['student'] = $this->Student_Model->get_student_details($student_id); // Fetch details like name, photo, roll no, etc.
+        $data['streak'] = $this->Attendance_Model->get_streak_data($student_id);  // Current and longest streak
+        $data['attendance_graph'] = $this->Attendance_Model->get_weekly_attendance($student_id); // Attendance data
         $this->load->view('student/dashboard', $data);
     }
     public function authenticate()
@@ -40,7 +40,7 @@ class Student extends CI_Controller
             $password = $this->input->post('password', TRUE);
 
             // Check credentials
-            $student = $this->Student_model->verify_credentials($roll_no, $password);
+            $student = $this->Student_Model->verify_credentials($roll_no, $password);
             if ($student) {
                 // Save session data
                 $data = array(
@@ -92,9 +92,9 @@ class Student extends CI_Controller
                         'course'      => $student['course']
                     );
 
-                    $is_exist = $this->Student_model->getUserByRollNo($student['roll_number']);
+                    $is_exist = $this->Student_Model->getUserByRollNo($student['roll_number']);
                     if (!$is_exist) {
-                        if ($this->Student_model->insert_student($data)) {
+                        if ($this->Student_Model->insert_student($data)) {
                             set_toast_message('success', 'Added Successfully');
                         } else {
                             set_toast_message('error', 'Failed to add.');
