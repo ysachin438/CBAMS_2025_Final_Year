@@ -20,11 +20,11 @@ class Student extends CI_Controller
     }
     public function dashboard()
     {
+        die('I died Here');
         $student_id = $this->session->userdata('student_id');
         $data['student'] = $this->Student_Model->get_student_details($student_id); // Fetch details like name, photo, roll no, etc.
         $data['streak'] = $this->Attendance_Model->get_streak_data($student_id);  // Current and longest streak
         $data['attendance_graph'] = $this->Attendance_Model->get_weekly_attendance($student_id); // Attendance data
-        die('I died Here');
         $this->load->view('Student/dashboard', $data);
     }
     public function authenticate()
