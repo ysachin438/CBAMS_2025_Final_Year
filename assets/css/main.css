@@ -1,0 +1,93 @@
+:root {
+  --light-yellow: #FBDB93;
+  --salmon-red: #BE5B50;
+  --deep-red: #8A2D3B;
+  --dark-maroon: #641B2E;
+}
+.student-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* ==========================
+   Navbar Styles
+   ========================== */
+
+.navbar {
+  background-color: var(--deep-red);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+
+
+/* Toaster CSS */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  z-index: 9999;
+  opacity: 0.95;
+  animation: slideIn 0.3s ease, fadeOut 0.5s ease 3s forwards;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.toast-success {
+  background-color: #28a745;
+}
+
+.toast-error {
+  background-color: #dc3545;
+}
+
+.toast-info {
+  background-color: #17a2b8;
+}
+
+.toast-warning {
+  background-color: #ffc107;
+  color: #000;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

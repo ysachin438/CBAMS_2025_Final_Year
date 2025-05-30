@@ -1,0 +1,84 @@
+.sidebar-toggle-btn {
+  background-color: #8A2D3B;
+  /* Deep Red */
+  color: #FBDB93;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 6px;
+  margin-left: 10px;
+}
+
+.navbar {
+  background-color: #641B2E;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  position: relative;
+}
+
+.navbar .title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.profile-section {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #FBDB93;
+  object-fit: cover;
+}
+
+.dropdown-card {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 55px;
+  background-color: #fff;
+  color: #333;
+  width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  padding: 15px;
+}
+
+.dropdown-card.show {
+  display: block;
+}
+
+.dropdown-card h4 {
+  margin: 0 0 5px;
+  color: #641B2E;
+}
+
+.dropdown-card p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #555;
+}
+
+.dropdown-card .btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 5px 2px;
+  background-color: #BE5B50;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: background 0.3s;
+}
+
+.dropdown-card .btn:hover {
+  background-color: #8A2D3B;
+}

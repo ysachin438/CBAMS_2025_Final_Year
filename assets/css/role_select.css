@@ -1,0 +1,81 @@
+/* Colors */
+:root {
+  --light-yellow: #FBDB93;
+  --salmon-red: #BE5B50;
+  --deep-red: #8A2D3B;
+  --dark-maroon: #641B2E;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Background Image and Blur */
+.background-image {
+  background-image: url('<?= base_url("assets/images/bg-campus.jpg"); ?>'); /* Your image */
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* Overlay Card */
+.overlay-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.overlay-card h2 {
+  margin-bottom: 30px;
+  color: var(--dark-maroon);
+}
+
+/* Buttons */
+.role-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.role-btn {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.role-btn.student {
+  background-color: var(--salmon-red);
+}
+
+.role-btn.teacher {
+  background-color: var(--deep-red);
+}
+
+.role-btn.admin {
+  background-color: var(--dark-maroon);
+}
+
+.role-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
