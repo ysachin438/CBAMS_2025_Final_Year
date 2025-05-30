@@ -12,8 +12,8 @@ class Auth extends CI_Controller
 
   public function index()
   {
-    echo 'THis is auth controller';
-    // $this->load->view('auth/login');
+    // echo 'THis is auth controller';
+    $this->load->view('auth/login');
   }
   public function logout()
   {
