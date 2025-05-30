@@ -25,7 +25,7 @@ class Student extends CI_Controller
         $data['streak'] = $this->Attendance_Model->get_streak_data($student_id);  // Current and longest streak
         $data['attendance_graph'] = $this->Attendance_Model->get_weekly_attendance($student_id); // Attendance data
         die('I died Here');
-        $this->load->view('student/dashboard', $data);
+        $this->load->view('Student/dashboard', $data);
     }
     public function authenticate()
     {
@@ -55,10 +55,10 @@ class Student extends CI_Controller
                 // Redirect to dashboard
                 // print_r($this->session->get_userdata());
                 // die();
-                redirect('student/dashboard');
+                redirect('Student/dashboard');
             } else {
                 set_toast_message('error', 'Invalid Roll Number or Password.');
-                redirect('student/index');
+                redirect('Student/index');
             }
         }
     }
@@ -99,7 +99,7 @@ class Student extends CI_Controller
                             set_toast_message('success', 'Added Successfully');
                         } else {
                             set_toast_message('error', 'Failed to add.');
-                            redirect('student/add_student');
+                            redirect('Student/add_student');
                         }
                     } else {
                         set_toast_message('error', 'Student Already Exist.');
@@ -117,7 +117,7 @@ class Student extends CI_Controller
             $this->session->set_flashdata('error', 'No student data received.');
         }
 
-        redirect('student/index');
+        redirect('Student/index');
     }
 
     public function valid_date($date)
