@@ -24,7 +24,7 @@ class Student extends CI_Controller
         $data['student'] = $this->Student_Model->get_student_details($student_id); // Fetch details like name, photo, roll no, etc.
         $data['streak'] = $this->Attendance_Model->get_streak_data($student_id);  // Current and longest streak
         $data['attendance_graph'] = $this->Attendance_Model->get_weekly_attendance($student_id); // Attendance data
-        $this->load->view('Student/dashboard', $data);
+        $this->load->view('student/dashboard', $data);
     }
     public function authenticate()
     {
