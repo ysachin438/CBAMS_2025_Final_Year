@@ -53,8 +53,8 @@ class Student extends CI_Controller
                 );
                 $this->session->set_userdata($data);
                 // Redirect to dashboard
-                // print_r($this->session->get_userdata());
-                // die();
+                print_r($this->session->get_userdata());
+                die('I died here');
                 redirect('Student/dashboard');
             } else {
                 set_toast_message('error', 'Invalid Roll Number or Password.');
