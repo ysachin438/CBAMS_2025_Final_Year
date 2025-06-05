@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '@Nubhav438',
+	'hostname' => 'cbams-db.cvmoi6yc6k7w.ap-south-1.rds.amazonaws.com',
+	'username' => 'admin',
+	'password' => 'Sachin438',
 	'database' => 'cbams',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
