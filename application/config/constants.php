@@ -88,4 +88,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 |-------------------------------------------------------------------------------------
 |USER DEFINED CONSTANTS
 |-------------------------------------------------------------------------------------- */
-define('URL','https://google.com/');
+// define('URL','https://google.com/');
