@@ -15,7 +15,7 @@
         <p class="error"><?php $this->session->flashdata('error'); ?></p>
       <?php endif; ?>
 
-      <form action="<?= base_url('index.php/student/authenticate') ?>" method="post">
+      <form action="<?= site_url('student/authenticate') ?>" method="post">
         
         <label for="roll_no">Roll Number</label>
         <input type="text" name="roll_no" placeholder="Enter Roll Number" required />
