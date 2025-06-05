@@ -182,10 +182,6 @@
         transform: scale(1.1);
       }
     }
-
-
-
-
     .dashboard-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -274,10 +270,10 @@
         <div class="student-details">
           <p><strong>Name:</strong> <?= $student['first_name'] . ' ' . $student['last_name']; ?></p>
           <p><strong>Roll No:</strong> <?= $student['roll_number']; ?></p>
-          <p><strong>Father's Name:</strong> <?= @$student['father_name']; ?></p>
-          <p><strong>Course:</strong> B.Tech<? //echo @$student['course']; ?></p>
-          <p><strong>Branch:</strong> <?= @$student['branch']; ?></p>
-          <p><strong>Year:</strong> <?= @$student['current_year']; ?></p>
+          <p><strong>Father's Name:</strong> <?= $student['father_name']; ?></p>
+          <p><strong>Course:</strong> <? @$student['course']; ?></p>
+          <p><strong>Branch:</strong> <?= $student['branch']; ?></p>
+          <p><strong>Year:</strong> <?= $student['current_year']; ?></p>
         </div>
         <img src="<?= $student['profile_link']; ?>" class="student-photo" alt="Student Photo">
       </div>

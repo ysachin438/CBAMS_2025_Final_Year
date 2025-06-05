@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Teacher Login</title>
+  <title>Teacher Loginjjj</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+  <!-- Toastr CSS -->
+<link rel="stylesheet" href="<?= base_url('assets/toastr/toastr.min.css') ?>">
+
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -83,19 +86,17 @@
 
 <div class="login-container">
   <h2>Teacher Login</h2>
-  <?php if ($this->session->flashdata('error')): ?>
-    <div class="error-message"><?= $this->session->flashdata('error'); ?></div>
-  <?php endif; ?>
-
   <form method="post" action="<?= base_url('index.php/teacher/authenticate') ?>">
     <div class="form-group">
       <label for="username">Employee ID</label>
-      <input type="text" id="employee_id" name="employee_id" required placeholder="Enter employee ID">
+      <input type="text" id="employee_id" name="employee_id" value="<?= set_value('employee_id');?>" required placeholder="Enter employee ID">
+      <?= form_error('employee_id', '<div class="text-danger">', '</div>'); ?>
     </div>
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" required placeholder="Enter password">
+      <input type="password" id="password" name="password" value="<?= set_value('password');?>" required placeholder="Enter password">
+      <?= form_error('password', '<div class="text-danger">', '</div>'); ?>
     </div>
 
     <input type="submit" value="Login">
@@ -105,6 +106,16 @@
     &copy; <?= date("Y") ?> Cloud Attendance System
   </div>
 </div>
-
+<!-- T O A S T E R -->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Toastr JS -->
+<script src="<?= base_url('assets/toastr/toastr.min.js') ?>"></script>
+<!-- TOASTER-->
+<?php if ($this->session->flashdata('error')): ?>
+    <script>
+        toastr.error("<?= $this->session->flashdata('error'); ?>");
+    </script>
+<?php endif; ?>
 </body>
 </html>

@@ -4,11 +4,14 @@
   --deep-red: #8A2D3B;
   --dark-maroon: #641B2E;
 }
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
 .student-name {
   font-size: 1.25rem;
   font-weight: bold;
 }
-
 /* ==========================
    Navbar Styles
    ========================== */

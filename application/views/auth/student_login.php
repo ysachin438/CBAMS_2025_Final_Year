@@ -11,9 +11,9 @@
     <div class="login-box">
       <h2>Student Login</h2>
 
-      <?php //if ($this->session->flashdata('error')): ?>
-        <p class="error"><?php //$this->session->flashdata('error'); ?></p>
-      <?php //endif; ?>
+      <?php if ($this->session->flashdata('error')): ?>
+        <p class="error"><?php $this->session->flashdata('error'); ?></p>
+      <?php endif; ?>
 
       <form action="<?= base_url('index.php/student/authenticate') ?>" method="post">
         

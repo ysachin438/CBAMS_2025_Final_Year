@@ -8,25 +8,31 @@ class Teacher extends CI_Controller
   {
     parent::__construct();
     // Load models, helpers, etc.
+    $this->load->library('form_validation');
+    $this->load->library('session');
+    $this->load->helper('url');
+    // Models are loaded below
     $this->load->model('Teacher_model');
     $this->load->model('Student_model');
-    $this->load->model('Subject_model');
+     $this->load->model('Subject_model');
     $this->load->model('Class_model');
-    $this->load->model('Attendance_model');
+     $this->load->model('Attendance_model');
+    $this->load->model('Schedule_model');
   }
 
   public function index()
   {
-    $this->load->view('auth/teacher_login');
+   $this->load->view('auth/teacher_login');
   }
   public function authenticate()
   {
-    $this->form_validation->set_rules('employee_id', 'Employee ID', 'required|trim|numeric');
+    $this->form_validation->set_rules('employee_id', 'Employee ID', 'required|trim|alpha_numeric');
     $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
     if ($this->form_validation->run() == FALSE) {
       // Validation failed, reload login view with errors
-      $this->load->view('auth/login');
+      $this->session->set_flashdata('error', validation_errors());
+      $this->load->view('auth/teacher_login');
     } else {
 
       $employee_id = $this->input->post('employee_id', TRUE);
@@ -46,10 +52,10 @@ class Teacher extends CI_Controller
         );
 
         $this->session->set_userdata($data);
-        redirect('teacher/dashboard');
+        redirect(site_url('teacher/dashboard'));
       } else {
         set_toast_message('error', 'Invalid Employee ID or Password.');
-        redirect('teacher/index');
+        redirect(site_url('teacher/index'));
       }
     }
   }
@@ -61,6 +67,8 @@ class Teacher extends CI_Controller
     $teacher_id = $this->session->userdata('teacher_id');
     $data['teacher'] = $this->Teacher_model->get_teacher($teacher_id);
     $data['recent_attendance'] = $this->Attendance_model->get_recent_by_teacher($teacher_id);
+    $data['upcoming_schedule'] = $this->Schedule_model->get_upcoming_classes_by_teacher($teacher_id);
+    // print_r($data['upcoming_schedule']);die('I died Here');
     $this->load->view('templates/teacher_page', $data);
   }
 
@@ -83,7 +91,6 @@ class Teacher extends CI_Controller
     $this->form_validation->set_rules('student_id[]', 'Students', 'required');
 
     if ($this->form_validation->run() == FALSE) {
-      $this->session->set_flashdata('error', 'Please fill in all required fields.');
       redirect('teacher/mark_attendance');
     }
 
@@ -92,7 +99,7 @@ class Teacher extends CI_Controller
     $teacher_id = $this->session->userdata('teacher_id');
 
     $students = $this->input->post('student_id');
-    $statuses = $this->input->post('status'); // status[student_id] => present/absent/leave
+    $statuses = $this->input->post('status'); // status[student_id] =>  /absent/leave
 
     foreach ($students as $student_id) {
       $status = isset($statuses[$student_id]) ? $statuses[$student_id] : 'absent';
@@ -108,23 +115,35 @@ class Teacher extends CI_Controller
       $this->Attendance_model->insert_or_update($data); // custom method
     }
 
-    $this->session->set_flashdata('success', 'Attendance marked successfully.');
-    redirect('teacher/mark_attendance');
+    set_toast_message('success', 'Attendance marked successfully.');
+    redirect(site_url('teacher/mark_attendance'));
   }
 
 
   public function view_attendance()
   {
-    $data['title'] = 'Teacher Dashboard';
+    $data['title'] = 'View Attendance';
     $data['view'] = 'teacher/view_attendance';
-    $teacher_id = $this->session->userdata('teacher_id');
-    $class_id = $this->input->post('class_id');
-    $subject_id =  $this->input->post('subject_id');
-    $start_date = $this->input->get('from_date')?: null;
-    $end_date = $this->input->get('to_date')?: null;
-    $report_data['report_data'] = $this->Attendance_model->get_attendance_by_class_n_teacher($teacher_id, $class_id, $subject_id, $start_date, $end_date);
     $data['data'] = '';
-    $data['report_data'] = $report_data;
+    $teacher_id = $this->session->userdata('teacher_id');
+    // Get filter parameters from GET request
+    $class_id = $this->input->get('class_id') ?: null;
+    $subject_id = $this->input->get('subject_id') ?: null;
+    $start_date = $this->input->get('from_date') ?: null;
+    $end_date = $this->input->get('to_date') ?: null;
+    
+    // Load data for filter dropdowns
+    $data['classes'] = $this->Class_model->get_by_teacher($teacher_id);
+    $data['subjects'] = $this->Subject_model->get_by_teacher($teacher_id);
+
+    // Fetch attendance data based on filters
+    $data['report_data'] = $this->Attendance_model->get_attendance_by_class_n_teacher($teacher_id, $class_id, $subject_id, $start_date, $end_date);
+    
+    // Pass current filter values to the view to repopulate filter fields
+    $data['selected_class_id'] = $class_id;
+    $data['selected_subject_id'] = $subject_id;
+    $data['selected_from_date'] = $start_date;
+    $data['selected_to_date'] = $end_date;
     $this->load->view('templates/teacher_page', $data);
   }
 
@@ -170,7 +189,7 @@ class Teacher extends CI_Controller
       $this->session->set_userdata($session_data);
     }
     set_toast_message('success', 'Profile updated successfully.');
-    redirect('teacher/dashboard');
+    redirect(site_url('teacher/dashboard'));
   }
 
 
@@ -183,4 +202,50 @@ class Teacher extends CI_Controller
     $data['data'] = '';
     $this->load->view('templates/teacher_page', $data);
   }
+
+  public function submit_attendance()
+  {
+    $this->form_validation->set_rules('date', 'Date', 'required');
+    $this->form_validation->set_rules('class_id', 'Class', 'required');
+    $this->form_validation->set_rules('subject_id', 'Subject', 'required');
+    $this->form_validation->set_rules('attendance[]', 'Attendance', 'required');
+
+    if ($this->form_validation->run() == FALSE) {
+      $this->session->set_flashdata('error', validation_errors());
+      redirect('teacher/get_mark_attendance');
+    } else {
+      $date = $this->input->post('date');
+      $class_id = $this->input->post('class_id');
+      $subject_id = $this->input->post('subject_id');
+      $attendance_data = $this->input->post('attendance');
+      $teacher_id = $this->session->userdata('teacher_id');
+
+      $batch_attendance = [];
+      foreach ($attendance_data as $student_id => $status) {
+        $batch_attendance[] = [
+          'student_id' => $student_id,
+          'teacher_id' => $teacher_id,
+          'class_id' => $class_id,
+          'subject_id' => $subject_id,
+          'attendance_date' => $date,
+          'status' => $status,
+          'created_at' => date('Y-m-d H:i:s'),
+          'updated_at' => date('Y-m-d H:i:s')
+        ];
+      }
+      // print_r($batch_attendance);die('I died at 236/Teacher.php');
+      if (!empty($batch_attendance)) {
+        // Assuming Attendance_model has a method insert_batch_attendance
+        if ($this->Attendance_model->insert_batch_attendance($batch_attendance)) {
+          $this->session->set_flashdata('success', 'Attendance submitted successfully.');
+        } else {
+          $this->session->set_flashdata('error', 'Failed to submit attendance. Please try again.');
+        }
+      } else {
+        $this->session->set_flashdata('error', 'No attendance data to submit.');
+      }
+      redirect('teacher/get_mark_attendance');
+    }
+  }
 }
+?>

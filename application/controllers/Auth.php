@@ -21,6 +21,6 @@ class Auth extends CI_Controller
     $this->session->sess_destroy();
 
     // Optionally redirect to login page or home
-    redirect('auth/index');
+    redirect(site_url('auth/index'));
   }
 }

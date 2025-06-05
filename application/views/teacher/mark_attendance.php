@@ -13,7 +13,7 @@
         <select name="class_id" class="form-select" required>
           <option value="">-- Select Class --</option>
           <?php foreach ($classes as $class): ?>
-            <option value="<?= $class->id ?>"><?= $class->name ?></option>
+            <option value="<?= $class->class_id ?>"><?= $class->class_name ?></option>
           <?php endforeach; ?>
         </select>
       </div>
@@ -23,7 +23,7 @@
         <select name="subject_id" class="form-select" required>
           <option value="">-- Select Subject --</option>
           <?php foreach ($subjects as $subject): ?>
-            <option value="<?= $subject->id ?>"><?= $subject->name ?></option>
+            <option value="<?= $subject->subject_id ?>"><?= $subject->name ?></option>
           <?php endforeach; ?>
         </select>
       </div>
@@ -42,15 +42,15 @@
         <tbody>
           <?php foreach ($students as $student): ?>
             <tr>
-              <td><?= $student->roll_no ?></td>
-              <td><?= $student->name ?></td>
+              <td><?= $student->roll_number ?></td>
+              <td><?= $student->first_name . ' ' . $student->last_name ?></td>
               <td class="text-center">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="attendance[<?= $student->id ?>]" value="Present" checked>
+                  <input class="form-check-input" type="radio" name="attendance[<?= $student->student_id ?>]" value="Present" checked>
                   <label class="form-check-label text-success small">✔️ Present</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="attendance[<?= $student->id ?>]" value="Absent">
+                  <input class="form-check-input" type="radio" name="attendance[<?= $student->student_id ?>]" value="Absent">
                   <label class="form-check-label text-danger small">❌ Absent</label>
                 </div>
               </td>

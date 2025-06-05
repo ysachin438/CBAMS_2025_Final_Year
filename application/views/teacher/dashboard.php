@@ -29,7 +29,6 @@
     margin-right: 0.6rem;
   }
 
-
   .dashboard-card h5 {
     font-weight: 600;
     color: #8A2D3B;
@@ -74,7 +73,6 @@
     margin-bottom: 0.3rem;
   }
 </style>
-
 <div class="dashboard-container">
   <!-- Card 1: Recent Class Attendance -->
   <?php if (!empty($recent_attendance)): ?>
@@ -85,7 +83,7 @@
       </div>
       <p>Subject: <strong><?= $recent_attendance['subject_name'] ?></strong></p>
       <p>Class: <?= $recent_attendance['class_name'] ?></p>
-      <p>Date: <strong><?= date('d M Y', strtotime($recent_attendance['date'])) ?></strong></p>
+      <p>Date: <strong><?= date('d M Y', strtotime($recent_attendance['attendance_date'])) ?></strong></p>
       <div style="margin-top: 0.7rem;">
         <span class="badge-count" style="background-color: #d1e7dd; color: #0f5132;">
           ✔ Present: <?= $recent_attendance['present_count'] ?>
@@ -102,18 +100,32 @@
   <?php endif; ?>
 
 
-  <!-- Card 2: Upcoming Schedule -->
+  <!-- Card 2: Upcoming Classes -->
   <div class="dashboard-card">
     <div class="card-header-icon">
       <div class="icon-circle"><i class="bi bi-calendar-event-fill"></i></div>
-      <h5>Upcoming Schedule</h5>
+      <h5>Upcoming Classes</h5>
     </div>
-    <ul class="list-unstyled">
-      <li class="list-item">📚 OOP Class - 24 May, 10:00 AM</li>
-      <li class="list-item">🧪 DBMS Lab - 24 May, 2:00 PM</li>
-      <li class="list-item">📝 Mid-Term Exam - 27 May</li>
-    </ul>
+
+    <?php if (!empty($upcoming_schedule)): ?>
+      <ul class="list-unstyled">
+        <?php foreach ($upcoming_schedule as $item): ?>
+          <?php
+          $icon = '📚';
+          $title = $item['subject_name'] . ' (' . $item['class_name'] . ') - Room ' . $item['room_no'];
+          // Simulate a date for display, assuming today as base (no real date in backend data)
+          $displayDate = date('d M, h:i A', strtotime($item['start_time']));
+          ?>
+          <li class="list-item">
+            <?= $icon ?> <?= htmlspecialchars($title) ?> - <?= $displayDate ?>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    <?php else: ?>
+      <p>No upcoming classes.</p>
+    <?php endif; ?>
   </div>
+
 
   <!-- Card 3: Students and Courses -->
   <div class="dashboard-card">

@@ -8,7 +8,11 @@
 </head>
 <body>
   <div class="background-image"></div>
-
+  <?php if ($this->session->flashdata('toast_message')): ?>
+        <div class="toast toast-<?= $this->session->flashdata('toast_type'); ?>">
+            <?= $this->session->flashdata('toast_message'); ?>
+        </div>
+    <?php endif; ?>
   <div class="overlay-card">
     <h2>Select Your Role</h2>
     <div class="role-options">

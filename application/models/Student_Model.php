@@ -31,7 +31,11 @@ class Student_Model extends CI_Model
         return $this->db->insert('students', $data);
     }
     public function getUserByRollNo($roll_no){
-        return $this->db->get_where('students', ['roll_number' => $roll_no])->row_array();
+            $this->db->select('students.*, courses.course_name as course');
+            $this->db->from('students');
+            $this->db->join('courses', 'courses.course_ id = students.course_id', 'left');
+            $this->db->where('students.roll_number', $roll_no);
+            return $this->db->get()->row_array();
     }
 
     public function get_by_teacher($teacher_id) {

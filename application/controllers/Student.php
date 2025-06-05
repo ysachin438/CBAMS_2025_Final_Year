@@ -20,8 +20,12 @@ class Student extends CI_Controller
     }
     public function dashboard()
     {
+        // die('Heere');
         $student_id = $this->session->userdata('student_id');
         $data['student'] = $this->Student_Model->get_student_details($student_id); // Fetch details like name, photo, roll no, etc.
+        print_r($data['student']);
+        echo $this->db->last_query();
+        die('I died here');
         $data['streak'] = $this->Attendance_Model->get_streak_data($student_id);  // Current and longest streak
         $data['attendance_graph'] = $this->Attendance_Model->get_weekly_attendance($student_id); // Attendance data
         $this->load->view('student/dashboard', $data);
@@ -33,6 +37,7 @@ class Student extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             // Validation failed, reload login view with errors
+            set_toast_message('error', 'Validation failed. Please check your inputs and try again.');
             $this->load->view('auth/login');
         } else {
 
@@ -51,13 +56,10 @@ class Student extends CI_Controller
                     'is_logged_in' => TRUE
                 );
                 $this->session->set_userdata($data);
-                // Redirect to dashboard
-                // print_r($this->session->get_userdata());
-                // die('I died here');
-                redirect('Student/dashboard');
+                redirect(site_url('student/dashboard'));
             } else {
                 set_toast_message('error', 'Invalid Roll Number or Password.');
-                redirect('Student/index');
+                redirect(site_url('student/index'));
             }
         }
     }
@@ -85,11 +87,11 @@ class Student extends CI_Controller
                     $error_messages[] = "Row " . ($index + 1) . ": " . validation_errors('', '');
                 } else {
                     $data = array(
-                        'roll_number'        => $student['roll_number'],
-                        'first_name'        => $student['first_name'],
-                        'last_name'        => $student['last_name'],
-                        'date_of_birth '         => $student['dob'],
-                        'course'      => $student['course']
+                        'roll_number'   => $student['roll_number'],
+                        'first_name'    => $student['first_name'],
+                        'last_name'     => $student['last_name'],
+                        'date_of_birth' => $student['dob'],
+                        'course'    => $student['course']
                     );
 
                     $is_exist = $this->Student_Model->getUserByRollNo($student['roll_number']);
@@ -98,25 +100,25 @@ class Student extends CI_Controller
                             set_toast_message('success', 'Added Successfully');
                         } else {
                             set_toast_message('error', 'Failed to add.');
-                            redirect('Student/add_student');
+                            redirect(site_url('Student/add_student'));
                         }
                     } else {
                         set_toast_message('error', 'Student Already Exist.');
-                        redirect('student/add_student');
+                        redirect(site_url('student/add_student'));
                     }
                 }
             }
 
             if (!empty($error_messages)) {
-                $this->session->set_flashdata('error', implode('<br>', $error_messages));
+                set_toast_message('error', 'Some student data could not be processed. Please review details.');
             } else {
-                $this->session->set_flashdata('success', 'All students added successfully!');
+                set_toast_message('success', 'All students processed successfully!');
             }
         } else {
-            $this->session->set_flashdata('error', 'No student data received.');
+            set_toast_message('error', 'No student data was submitted.');
         }
 
-        redirect('Student/index');
+        redirect(site_url('Student/index'));
     }
 
     public function valid_date($date)
