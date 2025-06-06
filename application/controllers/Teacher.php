@@ -22,6 +22,7 @@ class Teacher extends CI_Controller
 
   public function index()
   {
+    die('Hello Man');
    $this->load->view('auth/teacher_login');
   }
   public function authenticate()
