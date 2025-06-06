@@ -1,6 +1,17 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * @property CI_Form_validation $form_validation
+ * @property CI_Session $session
+ * @property CI_Input $input
+ * @property Teacher_model $Teacher_model
+ * @property Student_model $Student_model
+ * @property Subject_model $Subject_model
+ * @property Class_model $Class_model
+ * @property Attendance_model $Attendance_model
+ * @property Schedule_model $Schedule_model
+ */
 class Teacher extends CI_Controller
 {
 
@@ -22,8 +33,7 @@ class Teacher extends CI_Controller
 
   public function index()
   {
-    die('Hello Man');
-   $this->load->view('auth/teacher_login');
+    $this->load->view('auth/teacher_login');
   }
   public function authenticate()
   {
