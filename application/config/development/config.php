@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/cbams_final_aws/';
+$config['base_url'] = 'http://cbams3-env.eba-bnszyayv.ap-south-1.elasticbeanstalk.com/';
 
 /*
 |--------------------------------------------------------------------------
