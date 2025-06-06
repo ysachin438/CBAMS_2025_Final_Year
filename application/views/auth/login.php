@@ -17,7 +17,7 @@
     <h2>Select Your Role</h2>
     <div class="role-options">
       <a href="<?= base_url('index.php/student/index'); ?>" class="role-btn student">Student</a>
-      <a href="<?= site_url('teacher/index'); ?>" class="role-btn teacher">Teacher</a>
+      <a href="<?= base_url('index.php/teacher/index'); ?>" class="role-btn teacher">Teacher</a>
       <a href="<?= base_url('index.php/admin/login'); ?>" class="role-btn admin">Admin</a>
     </div>
   </div>
