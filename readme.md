@@ -2,11 +2,11 @@
 
 <div align="center">
   
-  ![GitHub repo size](https://img.shields.io/github/repo-size/ysachin438/attendance-management-system)
-  ![GitHub stars](https://img.shields.io/github/stars/ysachin438/attendance-management-system?style=social)
-  ![GitHub forks](https://img.shields.io/github/forks/ysachin438/attendance-management-system?style=social)
-  ![GitHub issues](https://img.shields.io/github/issues/ysachin438/attendance-management-system)
-  ![GitHub license](https://img.shields.io/github/license/ysachin438/attendance-management-system)
+  ![GitHub repo size](https://img.shields.io/github/repo-size/ysachin438/CBAMS_2025_Final_Year)
+  ![GitHub stars](https://img.shields.io/github/stars/ysachin438/CBAMS_2025_Final_Year?style=social)
+  ![GitHub forks](https://img.shields.io/github/forks/ysachin438/CBAMS_2025_Final_Year?style=social)
+  ![GitHub issues](https://img.shields.io/github/issues/ysachin438/CBAMS_2025_Final_Year)
+  ![GitHub license](https://img.shields.io/github/license/ysachin438/CBAMS_2025_Final_Year)
   
   <h3>A Modern Solution for Automated Attendance Tracking</h3>
   <p>Transform your attendance management with cloud-powered efficiency</p>
@@ -109,21 +109,21 @@ A robust, scalable, and user-friendly cloud-based system that:
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────┴──────────────────────────────────┐
-│                      Application Layer                       │
-│                                                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
-│  │   Frontend   │  │   Backend    │  │   Database   │     │
-│  │  HTML/CSS/JS │◄─►│   PHP API   │◄─►│    MySQL     │     │
-│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│                      Application Layer                      │
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
+│  │   Frontend   │  │   Backend    │  │   Database   │       │
+│  │  HTML/CSS/JS │◄─►│   PHP API   │◄─►│    MySQL     │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘       │
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────┴──────────────────────────────────┐
 │                        User Layer                           │
-│                                                              │
-│    ┌─────────┐     ┌─────────┐     ┌─────────┐            │
-│    │  Admin  │     │ Teacher │     │ Student │            │
-│    └─────────┘     └─────────┘     └─────────┘            │
-└──────────────────────────────────────────────────────────────┘
+│                                                             │
+│    ┌─────────┐     ┌─────────┐     ┌─────────┐              │
+│    │  Admin  │     │ Teacher │     │ Student │              │
+│    └─────────┘     └─────────┘     └─────────┘              │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -131,23 +131,23 @@ A robust, scalable, and user-friendly cloud-based system that:
 ## 📸 Screenshots
 
 ### 🏠 Dashboard
-
+![Dashboard Screenshot] (assets/Student_Dashboard.png)
 *Main dashboard showing attendance overview and statistics*
 
 ### 🔐 Login Page
-![Login Screenshot](https://via.placeholder.com/800x400.png?text=Add+Your+Login+Page+Screenshot+Here)
+![Login Screenshot](assets/Teacher_Login_Page.png)
 *Secure authentication interface with role selection*
 
 ### 📊 Attendance Report
-![Report Screenshot](https://via.placeholder.com/800x400.png?text=Add+Your+Report+Screenshot+Here)
+![Report Screenshot](assets/Teacher_Login_Page.png)
 *Comprehensive attendance report with filtering options*
 
 ### 👥 User Management
-![User Management Screenshot](https://via.placeholder.com/800x400.png?text=Add+Your+User+Management+Screenshot+Here)
+![User Management Screenshot](assets/Home_Page.png)
 *Admin panel for managing users and roles*
 
 ### 📈 Analytics Dashboard
-![Analytics Screenshot](https://via.placeholder.com/800x400.png?text=Add+Your+Analytics+Screenshot+Here)
+![Analytics Screenshot](assets/Student_Dashboard.png)
 *Visual representation of attendance trends and patterns*
 
 ---
@@ -167,7 +167,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository**
    ```bash
    git clone https://github.com/ysachin438/CBAMS_2025_Final_Year.git
-   cd attendance-management-system
+   cd CBAMS_2025_Final_Year
    ```
 
 2. **Set up the database**
@@ -296,6 +296,6 @@ Project Link: [https://github.com/ysachin438/CBAMS_2025_Final_Year/](https://git
   
 ### ⭐ Star this repository if you find it helpful!
 
-Made with ❤️ by [Sachin]
+Made with ❤️ by *Sachin-Yadav*
 
 </div>
