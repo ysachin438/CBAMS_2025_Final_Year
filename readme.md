@@ -134,22 +134,21 @@ A robust, scalable, and user-friendly cloud-based system that:
 ![Dashboard Screenshot](assets/screenshots/Student_Dashboard.png)
 *Main dashboard showing attendance overview and statistics*
 
-### 🔐 Login Page
-![Login Screenshot](assets/screenshots/Teacher_Login_Page.png)
+### 🔐 Landing Page
+![Home Screenshot](assets/screenshots/Landing_Page.png)
 *Secure authentication interface with role selection*
 
-### 📊 Attendance Report
-![Report Screenshot](assets/screenshots/Teacher_Login_Page.png)
-*Comprehensive attendance report with filtering options*
-
-### 👥 User Management
-![User Management Screenshot](assets/screenshots/Home_Page.png)
-*Admin panel for managing users and roles*
+### 🔐 Login Page
+![Login Screenshot](assets/screenshots/Teacher_Login_Page.png)
+*Secure authentication interface*
 
 ### 📈 Analytics Dashboard
-![Analytics Screenshot](assets/screenshots/Student_Dashboard.png)
+![Analytics Screenshot](assets/screenshots/Teacher_Dashboard.png)
 *Visual representation of attendance trends and patterns*
 
+### 👥 DFDs
+![DFD Screenshots](assets/screenshots/DFD_1.png)
+*Admin panel for managing users and roles*
 ---
 
 ## 🚀 Getting Started
